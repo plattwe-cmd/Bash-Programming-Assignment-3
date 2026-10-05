@@ -6,7 +6,7 @@ custFolder="presidentData"  # DO NOT CHANGE
 
 unset DFILE     # Data file
 unset SFILE     # Sed File 
-unset AFILE     # AWK Fie
+unset AFILE     # AWK File
 
 ################################################################################
 # Help                                                                         #
@@ -23,6 +23,29 @@ Usage()
 GetFile()
 {
   printf "Task 2: Checking for data structure\n"
+  # Check if presedent file exits
+  #   Create a new predent file if it doesn't extis
+  # Check if correct month file exits
+  #   Create a new MM file if it doesn't exist
+  # Download file from icarus server to correct location
+  # 
+  PRESIDENT="presidentData/$(date +%m)"
+  if [[ ! -d "$PRESIDENT" ]]
+  then
+    echo "Customer folder [$PRESIDENT] is missing"
+    
+    mkdir -p "$PRESIDENT"
+  fi
+
+  echo "Getting $DFILE from icarus server "
+  wget -P "$PRESIDENT" "https://icarus.cs.weber.edu/~dweidman/CS3030/$1"
+  if [ $? -eq 0 ]
+  then 
+    echo "Got it"
+  else
+    echo "Could not find $DFILE on server"
+    exit 1
+  fi
 
 }
 
@@ -32,7 +55,7 @@ GetFile()
 UpdateFile()
 {
   printf "Task 3: Updating date format\n"
-
+  sed -i.bak -f $SFILE presidentData/$(date +%m)/$DFILE
 }
 
 ################################################################################
@@ -40,8 +63,9 @@ UpdateFile()
 ################################################################################
 SplitFile()
 {
-  printf "Task 4: Spliting file based on century\n"
-
+  PRESIDENT="presidentData/$(date +%m)"
+  printf "Task 4: Spliting file based on century\n"  
+  awk -f $AFILE $PRESIDENT/$DFILE
 }
 
 
@@ -60,6 +84,38 @@ SplitFile()
 
 #### Task 5: Function to apply awk script 
 
+
+# Task 1
+while getopts ":s:a:f:h" opt; do 
+   case $opt in
+      s) 
+      SFILE=$OPTARG
+      UpdateFile $SFILE
+      ;;
+
+      a)
+      AFILE=$OPTARG
+      SplitFile $AFILE
+      ;;
+      f)
+      DFILE=$OPTARG
+      GetFile $DFILE
+      ;;
+      h)
+      Usage
+      exit 0
+      ;;
+
+      \?) # invalid entry
+      echo "Invalid option: -$OPTARG"
+      Usage
+      ;;
+      :) # require argument is missing
+      echo "Option -$OPTARG requires an argument"
+      Usage
+      ;;
+   esac
+done
 
 echo "Bye"
 exit 0

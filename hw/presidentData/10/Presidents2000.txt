@@ -1,0 +1,6 @@
+Presidency ,President ,Wikipedia Entry,Took office ,Left office ,Party ,Portrait,Thumbnail,Home State
+43,George W. Bush,http://en.wikipedia.org/wiki/George_W._Bush,20.01.2001,20.01.2009,Republican ,George_W_Bush.jpg,thmb_George_W_Bush.jpg,Texas
+44,Barack Obama,http://en.wikipedia.org/wiki/Barack_Obama,20.01.2009,20.01.2017 ,  Democratic   ,Barack_Obama.jpg,thmb_Barack_Obama.jpg,Illinois
+45,Donald J. Trump,http://en.wikipedia.org/wiki/Donald_Trump,20.01.2017,20.01.2021 ,  Republican   ,Donald_J_Trump.jpg,thmb_Donald_Trump.jpg, New York
+46,Joseph Biden,http://en.wikipedia.org/wiki/Joe_Biden,20.01.2021,20.01.2025,  Democratic   , Joe_Biden.jpg,thmb_Joe_Biden.jpg,Pennsilvania
+47,Donald J. Trump,http://en.wikipedia.org/wiki/Donald_Trump,20.01.2017,Incumbant,  Republican   ,Donald_J_Trump.jpg,thmb_Donald_Trump.jpg,Florida

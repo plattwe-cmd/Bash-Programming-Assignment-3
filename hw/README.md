@@ -192,7 +192,7 @@ When writting your script, take into account the field separator `FS = ","` for 
 
 You can test your script as follows:
 ```bash
-awk -f hw3.awk presidents.csv
+awk -f hw3.awk /presidentData/10/presidents.csv
 ```
 Finally,  display the number of records in each file.
 ### Sample Output Task 4 (Assuming that the current month is October)
