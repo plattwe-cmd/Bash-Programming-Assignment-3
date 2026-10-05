@@ -61,11 +61,22 @@ UpdateFile()
 ################################################################################
 # Create Files based on century
 ################################################################################
+count_lines()
+{
+    file=$1
+    num_lines=$(cat $file | wc -l)
+    echo "There are $num_lines records from $file file"
+}
 SplitFile()
 {
   PRESIDENT="presidentData/$(date +%m)"
   printf "Task 4: Spliting file based on century\n"  
   awk -f $AFILE $PRESIDENT/$DFILE
+
+  count_lines $PRESIDENT/Presidents1700.txt
+  count_lines $PRESIDENT/Presidents1800.txt
+  count_lines $PRESIDENT/Presidents1900.txt
+  count_lines $PRESIDENT/Presidents2000.txt
 }
 
 
